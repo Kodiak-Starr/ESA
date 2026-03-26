@@ -2465,21 +2465,21 @@ function Dashboard() {
       {(() => {
         const allIssueNav = ISSUE_CLUSTERS.flatMap(c => c.issues.map(i => ({ ...i, cluster:c })))
           .sort((a,b) => b.total - a.total);
-        const top6 = allIssueNav.slice(0, 6);
-        const rest  = allIssueNav.slice(6);
+        const top6 = allIssueNav.slice(0, 5);
+        const rest  = allIssueNav.slice(5);
         const [dropOpen, setDropOpen] = useState(false);
         const activeId = view === "issue" && selectedIssue ? selectedIssue.id : null;
 
         return (
           <div style={{ background:C.white, borderBottom:`1px solid ${C.border}`, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", position:"relative", zIndex:20 }}>
-            <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 32px", display:"flex", alignItems:"stretch", gap:4 }}>
+            <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 24px", display:"flex", alignItems:"stretch" }}>
               {top6.map(i => {
                 const isActive = i.id === activeId;
                 return (
                   <button key={i.id} onClick={() => selectIssue(i.cluster, i)}
                     style={{
                       fontFamily:FB, fontSize:14, fontWeight:isActive ? 700 : 500,
-                      padding:"0 18px", height:56, border:"none",
+                      padding:"0 12px", height:52, border:"none", flexShrink:0,
                       borderBottom:`4px solid ${isActive ? i.cluster.color : "transparent"}`,
                       borderTop:"4px solid transparent",
                       background: isActive ? i.cluster.bg : "transparent",
@@ -2501,12 +2501,9 @@ function Dashboard() {
                 );
               })}
 
-              {/* Divider */}
-              <div style={{ width:1, background:C.border, margin:"12px 8px", flexShrink:0 }}/>
-
-              {/* More issues dropdown */}
+              {/* More issues dropdown — pinned right */}
               {rest.length > 0 && (
-                <div style={{ position:"relative", display:"flex", alignItems:"center" }}>
+                <div style={{ position:"relative", display:"flex", alignItems:"center", marginLeft:"auto", flexShrink:0, paddingLeft:8, borderLeft:`1px solid ${C.border}` }}>
                   <button
                     onClick={() => setDropOpen(o => !o)}
                     style={{ fontFamily:FB, fontSize:14, fontWeight:600, height:56, padding:"0 16px", border:"none",
@@ -2531,7 +2528,7 @@ function Dashboard() {
                   {dropOpen && (
                     <>
                       <div style={{ position:"fixed", inset:0, zIndex:10 }} onClick={() => setDropOpen(false)}/>
-                      <div style={{ position:"absolute", left:0, top:"calc(100% + 4px)", background:C.white, border:`1px solid ${C.border}`, borderRadius:12, boxShadow:"0 12px 32px rgba(0,0,0,0.14)", minWidth:280, zIndex:30, overflow:"hidden" }}>
+                      <div style={{ position:"absolute", right:0, top:"calc(100% + 4px)", background:C.white, border:`1px solid ${C.border}`, borderRadius:12, boxShadow:"0 12px 32px rgba(0,0,0,0.14)", minWidth:280, zIndex:30, overflow:"hidden" }}>
                         <div style={{ padding:"10px 16px 8px", borderBottom:`1px solid ${C.smoke}` }}>
                           <div style={{ fontFamily:FB, fontSize:14, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:C.slateL }}>All issue areas</div>
                         </div>
