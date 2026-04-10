@@ -1345,20 +1345,24 @@ const COURT_TO_STATES = {
 // Approximate continental US outline path (clockwise from NW)
 const US_PATH = "M30,19 L88,19 L155,19 L165,24 L188,24 L196,30 L226,24 L262,28 L262,38 L252,52 L250,64 L246,76 L242,88 L232,100 L226,113 L218,122 L215,138 L210,148 L200,145 L195,135 L185,128 L168,120 L152,118 L140,122 L128,142 L120,145 L100,118 L74,100 L60,84 L36,84 L22,52 L22,35 Z";
 
-function GeoMap({ courts, color }) {
+function GeoMap({ courts, color, openPanel, clusterId }) {
   const [hovered, setHovered] = useState(null);
 
   const activeStates = new Set(
     courts.flatMap(c => COURT_TO_STATES[c] || [])
   );
 
+  function handleDotClick(abbr) {
+    if (!openPanel) return;
+    const cases = PANEL_CASES_BY_GEO[abbr] || [];
+    const matchedCourts = courts.filter(c => (COURT_TO_STATES[c] || []).includes(abbr));
+    openPanel(`Cases filed in ${abbr}`, cases, matchedCourts.join(" · "), color);
+  }
+
   return (
     <div style={{ position:"relative", width:"100%", paddingBottom:"60%", background:"#f0f4f8", borderRadius:8, border:`1px solid ${C.border}`, overflow:"hidden" }}>
       <svg viewBox="0 0 280 168" style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%" }} preserveAspectRatio="xMidYMid meet">
-        {/* US land background */}
         <path d={US_PATH} fill="#e4eaf3" stroke="#c5d0df" strokeWidth="0.8"/>
-
-        {/* All state dots */}
         {Object.entries(STATE_POSITIONS).map(([abbr, pos]) => {
           const isActive = activeStates.has(abbr);
           const isHov    = hovered === abbr;
@@ -1366,6 +1370,7 @@ function GeoMap({ courts, color }) {
             <g key={abbr}
                onMouseEnter={() => setHovered(abbr)}
                onMouseLeave={() => setHovered(null)}
+               onClick={() => isActive && handleDotClick(abbr)}
                style={{ cursor: isActive ? "pointer" : "default" }}>
               <circle
                 cx={pos.x} cy={pos.y}
@@ -1388,8 +1393,6 @@ function GeoMap({ courts, color }) {
           );
         })}
       </svg>
-
-      {/* Tooltip on hover */}
       {hovered && activeStates.has(hovered) && (() => {
         const matchedCourts = courts.filter(c => (COURT_TO_STATES[c] || []).includes(hovered));
         return (
@@ -1401,6 +1404,7 @@ function GeoMap({ courts, color }) {
             maxWidth:"80%",
           }}>
             <strong>{hovered}</strong> — {matchedCourts.join(", ")}
+            {openPanel && <span style={{opacity:.7}}> · click to explore cases</span>}
           </div>
         );
       })()}
@@ -1897,76 +1901,74 @@ function IssueDashboard({ issue, clusterColor, clusterBg, clusterBd, openPanel }
         );
       })()}
 
-      {/* Row C: Court Level + Status breakdown */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:14, marginBottom:14 }}>
-        <Card>
-          <SL color={clusterColor}>Court level</SL>
-          <CT>Appellate vs. District{activeSub !== "all" ? ` · ${sub ? sub.label : ""}` : ""}</CT>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20, marginTop:12 }}>
-            <div>
-              <Mu style={{ marginBottom:14 }}>How cases are split</Mu>
-              <AppDistSplit appellate={appellate} district={district} color={clusterColor} openPanel={openPanel} clusterId={ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id))?.id} />
-            </div>
-            <div>
-              <Mu style={{ marginBottom:8 }}>Status breakdown</Mu>
-              {[
-                { label:"Briefing ongoing",   n:Math.round(total*.54), color:C.blue   },
-                { label:"Decision issued",    n:Math.round(total*.20), color:C.amber  },
-                { label:"Appeal filed",       n:Math.round(total*.14), color:C.purple },
-                { label:"Dismissed / stayed", n:Math.round(total*.12), color:C.slateL },
-              ].map((s,i) => (
-                <Tip key={i} label="Explore cases">
-                <div style={{ marginBottom:8 }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
-                    <span style={{ fontFamily:FB, fontSize:13, color:C.slate }}>{s.label}</span>
-                    <span style={{ fontFamily:FD, fontWeight:700, fontSize:13, color:s.color }}>{s.n}</span>
-                  </div>
-                  <div style={{ height:4, background:C.smoke, borderRadius:3, cursor:"pointer" }}
-                    onClick={() => { const cl = ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id)); const clCases = cl && PANEL_CASES_BY_CLUSTER[cl.id]; const cases = clCases && clCases.status && clCases.status[s.label] || []; openPanel && openPanel(s.label, cases, `${s.n} cases · ${issue.label}`, s.color); }}>
-                    <div style={{ height:"100%", width:`${total>0?(s.n/total)*100:0}%`, background:s.color, borderRadius:3 }}/>
-                  </div>
-                </div>
-                </Tip>
-              ))}
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Bottom row */}
-      <div style={{ display:"grid", gridTemplateColumns:`${activeCourts&&activeCourts.length?"1fr ":""}${issue.spotlight?"1fr ":""}${issue.keyDates&&issue.keyDates.length?"1fr":""}`.trim()||"1fr", gap:14 }}>
+      {/* Bottom row: map 3/4 + court level/status 1/4 on right */}
+      <div style={{ display:"grid", gridTemplateColumns:"3fr 1fr", gap:14, marginBottom:14 }}>
+        {/* Left: map */}
         <Card>
           <SL color={clusterColor}>Geographic filing pattern</SL>
           <CT>Where cases are filed</CT>
           <Mu style={{ marginBottom:10 }}>
             Courts with the most active cases{activeSub !== "all" && sub ? <span style={{ marginLeft:6, background:clusterColor+"18", color:clusterColor, borderRadius:6, padding:"1px 7px", fontWeight:600 }}>{sub.label}</span> : ""}
           </Mu>
-          <GeoMap courts={activeCourts} color={clusterColor} />
+          <GeoMap courts={activeCourts} color={clusterColor} openPanel={openPanel} clusterId={ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id))?.id} />
           <div style={{ display:"flex", flexDirection:"column", gap:4, marginTop:10 }}>
             {activeCourts.slice(0, 4).map((c, i) => (
               <div key={i} style={{ display:"flex", alignItems:"center", gap:6 }}>
-                <div style={{ width:6, height:6, borderRadius:"50%", background:clusterColor, opacity:1 - i * .18, flexShrink:0 }} />
+                <div style={{ width:6, height:6, borderRadius:"50%", background:clusterColor, opacity:1-i*.18, flexShrink:0 }} />
                 <span style={{ fontFamily:FB, fontSize:14, color:C.slate }}>{c}</span>
               </div>
             ))}
           </div>
         </Card>
-        {issue.spotlight ? (
-          <Card>
-            <SL color={clusterColor}>Spotlight</SL>
-            <CT>Notable language</CT>
-            <Mu style={{ marginBottom:12 }}>Key quotes shaping this area</Mu>
-            <SpotlightQuote quote={issue.spotlight.quote} caseName={issue.spotlight.case} context={issue.spotlight.context} color={clusterColor} />
+
+        {/* Right: court level + status breakdown stacked */}
+        <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+          <Card style={{ flex:1 }}>
+            <SL color={clusterColor}>Court level</SL>
+            <CT>Split</CT>
+            <Mu style={{ marginBottom:10 }}>Appellate vs. district</Mu>
+            <AppDistSplit appellate={appellate} district={district} color={clusterColor} openPanel={openPanel} clusterId={ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id))?.id} />
           </Card>
-        ) : <div/>}
-        {issue.keyDates && issue.keyDates.length > 0 ? (
-          <Card>
-            <SL color={clusterColor}>Key dates</SL>
-            <CT>Upcoming deadlines</CT>
-            <Mu style={{ marginBottom:10 }}>Important dates in this issue area</Mu>
-            <KeyDatesStrip dates={issue.keyDates} color={clusterColor} />
+          <Card style={{ flex:1 }}>
+            <SL color={clusterColor}>Status</SL>
+            <CT>Breakdown</CT>
+            <div style={{ marginTop:8 }}>
+              {[
+                { label:"Briefing",   n:Math.round(total*.54), color:C.blue   },
+                { label:"Decided",    n:Math.round(total*.20), color:C.amber  },
+                { label:"Appeal",     n:Math.round(total*.14), color:C.purple },
+                { label:"Dismissed",  n:Math.round(total*.12), color:C.slateL },
+              ].map((s,i) => (
+                <Tip key={i} label="Explore cases">
+                <div style={{ marginBottom:8, cursor:"pointer" }}
+                  onClick={() => { const cl = ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id)); const clCases = cl && PANEL_CASES_BY_CLUSTER[cl.id]; const cases = clCases && clCases.status && clCases.status[s.label] || []; openPanel && openPanel(s.label, cases, `${s.n} cases · ${issue.label}`, s.color); }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:2 }}>
+                    <span style={{ fontFamily:FB, fontSize:12, color:C.slate }}>{s.label}</span>
+                    <span style={{ fontFamily:FD, fontWeight:700, fontSize:12, color:s.color }}>{s.n}</span>
+                  </div>
+                  <div style={{ height:4, background:C.smoke, borderRadius:3 }}>
+                    <div style={{ height:"100%", width:`${total>0?(s.n/total)*100:0}%`, background:s.color, borderRadius:3 }}/>
+                  </div>
+                </div>
+                </Tip>
+              ))}
+            </div>
           </Card>
-        ) : <div/>}
+          {issue.spotlight && (
+            <Card style={{ flex:1 }}>
+              <SL color={clusterColor}>Spotlight</SL>
+              <CT>Notable language</CT>
+              <SpotlightQuote quote={issue.spotlight.quote} caseName={issue.spotlight.case} context={issue.spotlight.context} color={clusterColor} />
+            </Card>
+          )}
+          {issue.keyDates && issue.keyDates.length > 0 && (
+            <Card style={{ flex:1 }}>
+              <SL color={clusterColor}>Key dates</SL>
+              <CT>Upcoming</CT>
+              <KeyDatesStrip dates={issue.keyDates} color={clusterColor} />
+            </Card>
+          )}
+        </div>
       </div>
 
       {/* Litigation Pattern Card */}
@@ -2885,49 +2887,13 @@ function ClusterDashboard({ cluster, onSelectIssue, openPanel }) {
         <ScotusCard clusterId={cluster.id} color={cluster.color} />
       </div>
 
-      {/* Row C: Court Level + Status breakdown */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:14, marginBottom:14 }}>
-        <Card>
-          <SL color={cluster.color}>Court level</SL>
-          <CT>Appellate vs. District</CT>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20, marginTop:12 }}>
-            <div>
-              <Mu style={{ marginBottom:14 }}>How cases are split</Mu>
-              <AppDistSplit appellate={totalApp} district={totalDist} color={cluster.color} openPanel={openPanel} clusterId={cluster.id} />
-            </div>
-            <div>
-              <Mu style={{ marginBottom:8 }}>Status breakdown</Mu>
-              {[
-                { label:"Briefing ongoing",   n:Math.round(totalCases*.54), color:C.blue   },
-                { label:"Decision issued",    n:Math.round(totalCases*.20), color:C.amber  },
-                { label:"Appeal filed",       n:Math.round(totalCases*.14), color:C.purple },
-                { label:"Dismissed / stayed", n:Math.round(totalCases*.12), color:C.slateL },
-              ].map((s,i) => (
-                <Tip key={i} label="Explore cases">
-                <div style={{ marginBottom:8 }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
-                    <span style={{ fontFamily:FB, fontSize:13, color:C.slate }}>{s.label}</span>
-                    <span style={{ fontFamily:FD, fontWeight:700, fontSize:13, color:s.color }}>{s.n}</span>
-                  </div>
-                  <div style={{ height:4, background:C.smoke, borderRadius:3, cursor:"pointer" }}
-                    onClick={() => { const clCases = PANEL_CASES_BY_CLUSTER[cluster.id]; const cases = clCases && clCases.status && clCases.status[s.label] || []; openPanel && openPanel(s.label, cases, `${s.n} cases · Current status`, s.color); }}>
-                    <div style={{ height:"100%", width:`${totalCases>0?(s.n/totalCases)*100:0}%`, background:s.color, borderRadius:3 }}/>
-                  </div>
-                </div>
-              </Tip>
-              ))}
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Map */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:14, marginBottom:14 }}>
+      {/* Map row: map 3/4 + court level/status 1/4 */}
+      <div style={{ display:"grid", gridTemplateColumns:"3fr 1fr", gap:14, marginBottom:14 }}>
         <Card>
           <SL color={cluster.color}>Geographic filing pattern</SL>
           <CT>Where cases are filed</CT>
           <Mu style={{ marginBottom:10 }}>Courts with the most active cases</Mu>
-          <GeoMap courts={activeCourts} color={cluster.color} />
+          <GeoMap courts={activeCourts} color={cluster.color} openPanel={openPanel} clusterId={cluster.id} />
           <div style={{ display:"flex", flexDirection:"column", gap:4, marginTop:10 }}>
             {activeCourts.slice(0,4).map((c,i) => (
               <div key={i} style={{ display:"flex", alignItems:"center", gap:6 }}>
@@ -2937,7 +2903,39 @@ function ClusterDashboard({ cluster, onSelectIssue, openPanel }) {
             ))}
           </div>
         </Card>
-
+        <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+          <Card style={{ flex:1 }}>
+            <SL color={cluster.color}>Court level</SL>
+            <CT>Split</CT>
+            <Mu style={{ marginBottom:10 }}>Appellate vs. district</Mu>
+            <AppDistSplit appellate={totalApp} district={totalDist} color={cluster.color} openPanel={openPanel} clusterId={cluster.id} />
+          </Card>
+          <Card style={{ flex:1 }}>
+            <SL color={cluster.color}>Status</SL>
+            <CT>Breakdown</CT>
+            <div style={{ marginTop:8 }}>
+              {[
+                { label:"Briefing",  n:Math.round(totalCases*.54), color:C.blue   },
+                { label:"Decided",   n:Math.round(totalCases*.20), color:C.amber  },
+                { label:"Appeal",    n:Math.round(totalCases*.14), color:C.purple },
+                { label:"Dismissed", n:Math.round(totalCases*.12), color:C.slateL },
+              ].map((s,i) => (
+                <Tip key={i} label="Explore cases">
+                <div style={{ marginBottom:8, cursor:"pointer" }}
+                  onClick={() => { const clCases = PANEL_CASES_BY_CLUSTER[cluster.id]; const cases = clCases && clCases.status && clCases.status[s.label] || []; openPanel && openPanel(s.label, cases, `${s.n} cases · Current status`, s.color); }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:2 }}>
+                    <span style={{ fontFamily:FB, fontSize:12, color:C.slate }}>{s.label}</span>
+                    <span style={{ fontFamily:FD, fontWeight:700, fontSize:12, color:s.color }}>{s.n}</span>
+                  </div>
+                  <div style={{ height:4, background:C.smoke, borderRadius:3 }}>
+                    <div style={{ height:"100%", width:`${totalCases>0?(s.n/totalCases)*100:0}%`, background:s.color, borderRadius:3 }}/>
+                  </div>
+                </div>
+                </Tip>
+              ))}
+            </div>
+          </Card>
+        </div>
       </div>
 
       {/* Spotlight + Key dates — shown when an issue is selected */}
