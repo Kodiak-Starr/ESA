@@ -186,6 +186,7 @@ const ISSUE_CLUSTERS = [
       { id:"erisa", label:"ERISA", total:16, appellate:7, district:9,
         subTopics:[{ id:"pre", label:"Preemption", n:9, appellate:4, district:5, courts:["Third Circuit","Seventh Circuit","Ninth Circuit","New Jersey"], whoSues:[{name:"Trade Associations",n:4},{name:"State AGs",n:3},{name:"Insurers",n:2}] },{ id:"fid", label:"Fiduciary Duty", n:7, appellate:3, district:4, courts:["Third Circuit","New Jersey","Pennsylvania Eastern"], whoSues:[{name:"Employees / Plan Participants",n:5},{name:"Patients",n:2}] }],
         filedByYear:[{y:"2020",n:2},{y:"2021",n:2},{y:"2022",n:3},{y:"2023",n:4},{y:"2024",n:3},{y:"2025",n:2}],
+        legalTheories:[{name:"ERISA Preemption",n:14}, {name:"APA — Arbitrary & Capricious",n:6}, {name:"ERISA Fiduciary Duty",n:5}, {name:"Supremacy Clause",n:4}, {name:"APA — Contrary to Law",n:3}],
         policyStatus:"stable", policyNote:"ERISA preemption doctrine largely settled; new fiduciary duty cases emerging.",
         whoSues:[{name:"Employers",n:8},{name:"Employees/unions",n:5},{name:"Industry",n:3}],
         filedByYear:[{y:"2020",n:2},{y:"2021",n:2},{y:"2022",n:3},{y:"2023",n:4},{y:"2024",n:3},{y:"2025",n:2}],
@@ -209,6 +210,7 @@ const ISSUE_CLUSTERS = [
           { id:"hipaa", label:"HIPAA Privacy",          n:5,  appellate:2, district:3, courts:["D.C. Circuit","Ninth Circuit","Colorado"], whoSues:[{name:"State AGs (blue)",n:3},{name:"Advocacy Orgs",n:2}] },
         ],
         filedByYear:[{y:"2022",n:4},{y:"2023",n:9},{y:"2024",n:12},{y:"2025",n:14},{y:"2026",n:7}],
+        legalTheories:[{name:"APA — Contrary to Law",n:18}, {name:"APA — Arbitrary & Capricious",n:15}, {name:"Spending Clause",n:11}, {name:"Major Questions Doctrine",n:9}, {name:"Equal Protection",n:8}, {name:"First Amend. / Free Exercise",n:6}, {name:"Commerce Clause",n:4}],
         policyStatus:"contested", policyNote:"Mifepristone access under active litigation; EMTALA obligations in emergency care unsettled across circuits.",
         whoSues:[{name:"Advocacy orgs",n:18},{name:"State AGs (blue)",n:12},{name:"State AGs (red)",n:9},{name:"Providers",n:7}],
         filedByYear:[{y:"2022",n:4},{y:"2023",n:9},{y:"2024",n:12},{y:"2025",n:14},{y:"2026",n:7}],
@@ -231,6 +233,7 @@ const ISSUE_CLUSTERS = [
           { id:"info",  label:"Health Information",          n:2,  appellate:1,  district:1, courts:["D.C. Circuit","District of Columbia"], whoSues:[{name:"Advocacy Orgs",n:1},{name:"State AGs (blue)",n:1}] },
         ],
         filedByYear:[{y:"2025",n:17},{y:"2026",n:24}],
+        legalTheories:[{name:"APA — Arbitrary & Capricious",n:24}, {name:"Spending Clause",n:20}, {name:"APA — Contrary to Law",n:18}, {name:"Separation of Powers",n:14}, {name:"Non-Delegation",n:7}, {name:"Due Process",n:5}],
         policyStatus:"blocked", policyNote:"Multiple courts have issued preliminary injunctions blocking HHS funding terminations. 14 of 17 PI motions granted.",
         whoSues:[{name:"Universities/research",n:14},{name:"State AGs (blue)",n:11},{name:"Hospitals",n:9},{name:"Counties/cities",n:7}],
         filedByYear:[{y:"2025",n:17},{y:"2026",n:24}],
@@ -265,6 +268,7 @@ const ISSUE_CLUSTERS = [
       { id:"340b", label:"340B Program", total:20, appellate:10, district:10,
         subTopics:[{ id:"dis", label:"Drug Discount Disputes", n:20, appellate:10, district:10 }],
         filedByYear:[{y:"2021",n:4},{y:"2022",n:5},{y:"2023",n:4},{y:"2024",n:4},{y:"2025",n:3}],
+        legalTheories:[{name:"APA — Arbitrary & Capricious",n:11}, {name:"APA — Contrary to Law",n:9}, {name:"Spending Clause",n:6}, {name:"Supremacy Clause",n:4}, {name:"Due Process",n:3}],
         policyStatus:"stable", policyNote:"340B program continues operating; manufacturer contract pharmacy restrictions subject to ongoing circuit-level appeals.",
         whoSues:[{name:"Pharma manufacturers",n:12},{name:"Hospitals/providers",n:8}],
         filedByYear:[{y:"2021",n:4},{y:"2022",n:5},{y:"2023",n:4},{y:"2024",n:4},{y:"2025",n:3}],
@@ -282,6 +286,7 @@ const ISSUE_CLUSTERS = [
       { id:"mdrugprice", label:"Medicare Drug Price Negotiation", total:22, appellate:12, district:10,
         subTopics:[{ id:"all", label:"All cases", n:22, appellate:12, district:10 }],
         filedByYear:[{y:"2023",n:12},{y:"2024",n:7},{y:"2025",n:2},{y:"2026",n:1}],
+        legalTheories:[{name:"APA — Contrary to Law",n:11}, {name:"APA — Arbitrary & Capricious",n:9}, {name:"Major Questions Doctrine",n:8}, {name:"Non-Delegation",n:7}, {name:"Takings Clause",n:6}, {name:"First Amendment",n:4}, {name:"Due Process",n:3}],
         policyStatus:"active", policyNote:"Program proceeding. First cycle drugs being negotiated. Multiple pharmaceutical company challenges ongoing.",
         whoSues:[{name:"Pharma manufacturers",n:16},{name:"Industry trade groups",n:6}],
         filedByYear:[{y:"2023",n:12},{y:"2024",n:7},{y:"2025",n:2},{y:"2026",n:1}],
@@ -319,6 +324,7 @@ const ISSUE_CLUSTERS = [
           { id:"gen", label:"General Antitrust",           n:16, appellate:6, district:10, courts:["Fifth Circuit","Ninth Circuit","Sixth Circuit","Texas Southern","Ohio Southern","Georgia Northern"], whoSues:[{name:"FTC / DOJ",n:7},{name:"Employer Health Plans",n:5},{name:"Patients",n:4}] },
         ],
         filedByYear:[{y:"2022",n:4},{y:"2023",n:6},{y:"2024",n:7},{y:"2025",n:5},{y:"2026",n:1}],
+        legalTheories:[{name:"Sherman Antitrust Act § 1",n:12}, {name:"Sherman Antitrust Act § 2",n:9}, {name:"Clayton Act",n:7}, {name:"FTC Act § 5",n:6}, {name:"False Claims Act",n:3}],
         policyStatus:"stable", policyNote:"FTC increasingly active in health care mergers and provider market conduct. Hospital systems facing scrutiny over contracting practices.",
         whoSues:[{name:"FTC",n:8},{name:"Employer health plans",n:7},{name:"Patients/providers",n:8}],
         filedByYear:[{y:"2022",n:4},{y:"2023",n:6},{y:"2024",n:7},{y:"2025",n:5},{y:"2026",n:1}],
@@ -333,6 +339,8 @@ const ISSUE_CLUSTERS = [
           {id:"ai", label:"AI Prior Authorization", n:3, appellate:1,district:2, courts:["Eighth Circuit","Minnesota","California Northern"], whoSues:[{name:"Patients / Estates",n:2},{name:"Provider Groups",n:1}] },
           {id:"oth",label:"Other MA Disputes",      n:6, appellate:3,district:3, courts:["Sixth Circuit","Fifth Circuit","Kentucky Western"], whoSues:[{name:"Patients",n:3},{name:"Providers",n:2},{name:"State AGs",n:1}] },
         ],
+        legalTheories:[{name:"APA — Arbitrary & Capricious",n:10}, {name:"False Claims Act",n:9}, {name:"Medicare Statute",n:8}, {name:"APA — Contrary to Law",n:6}, {name:"Due Process",n:4}, {name:"ERISA Preemption",n:3}],
+        legalTheories:[{name:"False Claims Act",n:9}, {name:"APA — Arbitrary & Capricious",n:8}, {name:"Medicare Statute",n:7}, {name:"APA — Contrary to Law",n:5}, {name:"ERISA Preemption",n:3}],
         policyStatus:"contested", policyNote:"CMS payment rate disputes generate new filings every annual cycle. AI-based prior authorization practices generating new case category.",
         whoSues:[{name:"MA insurers",n:16},{name:"Patients",n:5},{name:"Providers",n:2}],
         filedByYear:[{y:"2023",n:4},{y:"2024",n:8},{y:"2025",n:8},{y:"2026",n:3}],
@@ -354,6 +362,7 @@ const ISSUE_CLUSTERS = [
           { id:"workforce",  label:"Workforce Diversity Programs",    n:8,  appellate:3,  district:5, courts:["Eighth Circuit","Sixth Circuit","Fifth Circuit","Arkansas"], whoSues:[{name:"Advocacy Orgs (Do No Harm)",n:6},{name:"Individuals",n:2}] },
         ],
         filedByYear:[{y:"2022",n:3},{y:"2023",n:8},{y:"2024",n:14},{y:"2025",n:19},{y:"2026",n:5}],
+        legalTheories:[{name:"Equal Protection",n:22}, {name:"Civil Rights Act § 1981",n:16}, {name:"APA — Arbitrary & Capricious",n:12}, {name:"First Amend. / Free Expression",n:8}, {name:"Spending Clause",n:6}, {name:"Title VI",n:5}],
         policyStatus:"contested", policyNote:"Anti-DEI litigation accelerating rapidly. 'Do No Harm' coordinating challenges to race-conscious health programs nationwide across 8+ states.",
         whoSues:[{name:"Anti-DEI orgs (Do No Harm)",n:18},{name:"State AGs (red)",n:14},{name:"Industry",n:10},{name:"Individuals",n:7}],
         filedByYear:[{y:"2022",n:3},{y:"2023",n:8},{y:"2024",n:14},{y:"2025",n:19},{y:"2026",n:5}],
@@ -376,6 +385,7 @@ const ISSUE_CLUSTERS = [
           { id:"billing_prot",label:"Billing Protections",        n:4, appellate:2, district:2, courts:["Fifth Circuit","Tenth Circuit","Colorado"], whoSues:[{name:"Trade Associations",n:2},{name:"Consumers",n:2}] },
         ],
         filedByYear:[{y:"2022",n:2},{y:"2023",n:3},{y:"2024",n:5},{y:"2025",n:6},{y:"2026",n:1}],
+        legalTheories:[{name:"APA — Arbitrary & Capricious",n:8}, {name:"False Claims Act",n:7}, {name:"ACA § 1311 / § 1321",n:5}, {name:"ERISA Preemption",n:4}, {name:"State Consumer Protection",n:3}],
         policyStatus:"contested", policyNote:"Ghost network fraud cases surging. ACA marketplace enrollment fraud by web brokers spawning class actions — one scheme enrolled thousands without consent.",
         whoSues:[{name:"Patients/consumers",n:9},{name:"State AGs",n:5},{name:"Advocacy orgs",n:3}],
         filedByYear:[{y:"2022",n:2},{y:"2023",n:3},{y:"2024",n:5},{y:"2025",n:6},{y:"2026",n:1}],
@@ -390,6 +400,7 @@ const ISSUE_CLUSTERS = [
           { id:"snp_reg", label:"Regulatory Challenges",          n:3, appellate:1, district:2, courts:["D.C. Circuit","Texas Northern"], whoSues:[{name:"Hospital Associations",n:2},{name:"Industry Groups",n:1}] },
         ],
         filedByYear:[{y:"2023",n:1},{y:"2024",n:4},{y:"2025",n:3},{y:"2026",n:1}],
+        legalTheories:[{name:"APA — Arbitrary & Capricious",n:5}, {name:"APA — Contrary to Law",n:4}, {name:"Major Questions Doctrine",n:3}, {name:"Spending Clause",n:2}],
         policyStatus:"contested", policyNote:"More cases than anticipated — hospital associations and systems challenging CMS site-neutral payment reforms under the OPPS rule.",
         whoSues:[{name:"Hospital associations",n:5},{name:"Hospital systems",n:3},{name:"Industry groups",n:1}],
         filedByYear:[{y:"2023",n:1},{y:"2024",n:4},{y:"2025",n:3},{y:"2026",n:1}],
@@ -404,6 +415,7 @@ const ISSUE_CLUSTERS = [
           { id:"ai_diag", label:"AI Diagnostic Tools",            n:1, appellate:1, district:0, courts:["D.C. Circuit"], whoSues:[{name:"Advocacy Orgs",n:1}] },
         ],
         filedByYear:[{y:"2023",n:1},{y:"2024",n:1},{y:"2025",n:1}],
+        legalTheories:[{name:"False Claims Act",n:2}, {name:"ERISA Fiduciary Duty",n:2}, {name:"APA — Contrary to Law",n:1}],
         policyStatus:"active", policyNote:"Small but fastest-growing category. AI-driven prior authorization denials generating new liability theories. Lokken v. UnitedHealth survived motion to dismiss — now in discovery.",
         whoSues:[{name:"Patients / estates",n:2},{name:"Provider groups",n:1}],
         filedByYear:[{y:"2023",n:1},{y:"2024",n:1},{y:"2025",n:1}],
@@ -1150,6 +1162,55 @@ function PlaintiffTypeCard({ data, color, openPanel, clusterId }) {
   );
 }
 
+
+// Legal Theories / Statutes Card
+function LegalTheoriesCard({ data, color, openPanel, clusterId }) {
+  const items = (data || []).slice(0, 8);
+  const maxN  = Math.max(...items.map(d => d.n), 1);
+  const [hov, setHov] = useState(null);
+  // Color palette — use muted tones to differentiate from plaintiff card
+  const COLORS = ["#1e3a5f","#2563eb","#7c3aed","#0d9488","#b45309","#dc2626","#6b7280","#0891b2"];
+
+  function handleClick(d) {
+    if (!openPanel) return;
+    // Pull cases for this theory from panel data if available
+    const cl = clusterId && PANEL_CASES_BY_CLUSTER[clusterId];
+    const cases = cl && cl.theories && cl.theories[d.name] || [];
+    openPanel(d.name, cases, `${d.n} cases citing this legal theory`, color);
+  }
+
+  return (
+    <Card>
+      <SL color={color}>Legal theories</SL>
+      <CT>Statutes &amp; Doctrines Cited</CT>
+      <Mu style={{ marginBottom:10 }}>Click any theory to explore related cases</Mu>
+      <div style={{ display:"flex", flexDirection:"column", gap:7 }}>
+        {items.map((d, i) => {
+          const pct   = Math.round((d.n / maxN) * 100);
+          const col   = COLORS[i % COLORS.length];
+          const isHov = hov === i;
+          return (
+            <Tip key={i} label="Explore cases">
+              <div
+                onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)}
+                onClick={() => handleClick(d)}
+                style={{ cursor:"pointer" }}>
+                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
+                  <span style={{ fontFamily:FB, fontSize:13, color: isHov ? color : C.navy, fontWeight:isHov?600:400, transition:"color 0.15s", flex:1, paddingRight:8 }}>{d.name}</span>
+                  <span style={{ fontFamily:FD, fontWeight:700, fontSize:13, color:col, flexShrink:0 }}>{d.n}</span>
+                </div>
+                <div style={{ height:5, background:C.smoke, borderRadius:3 }}>
+                  <div style={{ height:"100%", width:`${pct}%`, background:isHov?color:col, borderRadius:3, transition:"background 0.15s, width 0.3s" }}/>
+                </div>
+              </div>
+            </Tip>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}
+
 // Per-cluster judicial composition baselines (approximate from public data)
 const JUDICIAL_BY_CLUSTER = {
   access:   [{ pres:"Obama",n:18,party:"D",col:"#1a56db"},{pres:"Biden",n:14,party:"D",col:"#3b82f6"},{pres:"Trump",n:12,party:"R",col:"#dc2626"},{pres:"G.W. Bush",n:8,party:"R",col:"#ef4444"},{pres:"Clinton",n:5,party:"D",col:"#60a5fa"},{pres:"Reagan",n:3,party:"R",col:"#fca5a5"}],
@@ -1209,28 +1270,29 @@ function AppointingPresidentCard({ color, baseData, scale, openPanel, clusterId 
 // SCOTUS Card — cluster-aware or generic
 function ScotusCard({ clusterId, color }) {
   const BASE_URL = "https://litigationtracker.law.georgetown.edu";
+  // Cert petitions and cases at SCOTUS threshold that the team is actively watching
   const ALL_SCOTUS = [
-    { clusters:["repro","access"],    name:"Braidwood Management v. Kennedy",               issue:"Preventive Services (ACA)",            status:"Decision issued · Remanded",        url:`${BASE_URL}/issues/preventive-services` },
-    { clusters:["repro"],             name:"FDA v. Alliance for Hippocratic Medicine",       issue:"Medication Abortion / Mifepristone",   status:"Decision issued · FDA regs reinstated", url:`${BASE_URL}/issues/medication-abortion` },
-    { clusters:["repro","equity"],    name:"Neese v. Kennedy",                               issue:"Nondiscrimination / Gender Identity",   status:"Cert petition active",              url:`${BASE_URL}/litigation` },
-    { clusters:["repro"],             name:"Idaho v. United States (EMTALA)",                issue:"Emergency Abortion / EMTALA",          status:"Decision issued · Remanded",        url:`${BASE_URL}/issues/emtala` },
-    { clusters:["provider"],          name:"TMA v. HHS (TMA III)",                           issue:"No Surprises Act / QPA",               status:"Oral Argument May 5, 2026",         url:`${BASE_URL}/issues/qualifying-payment-amount` },
-    { clusters:["drugs"],             name:"Merck v. Becerra (IRA Negotiation)",             issue:"Medicare Drug Price Negotiation",       status:"Circuit court · SCOTUS watch",      url:`${BASE_URL}/issues/medicare-drug-price-negotiation` },
-    { clusters:["funding","access"],  name:"American Hospital Assoc. v. Becerra",            issue:"Medicare Reimbursement Rates",          status:"Decision issued",                   url:`${BASE_URL}/litigation` },
-    { clusters:["market"],            name:"FTC v. US Anesthesia Partners",                  issue:"Health Care Antitrust",                status:"District court · Appeal likely",    url:`${BASE_URL}/issues/anticompetitive-practices` },
-    { clusters:["equity"],            name:"Students for Fair Admissions v. Harvard",        issue:"Race-Conscious Admissions (DEI precedent)", status:"Decision issued · Shapes DEI cases", url:`${BASE_URL}/issues/equity` },
-    { clusters:["consumer"],          name:"AHA v. PatientRightsAdvocate.org",               issue:"Hospital Price Transparency",          status:"Briefing ongoing · Cert likely",    url:`${BASE_URL}/issues/transparency` },
+    { clusters:["repro","equity"],    name:"Neese v. Kennedy",                    issue:"ACA § 1557 · Gender identity nondiscrimination",  petition:"Cert petition pending — argues HHS exceeded its authority in promulgating nondiscrimination rules",  url:`${BASE_URL}/litigation` },
+    { clusters:["access","repro"],    name:"Braidwood Management v. Kennedy",     issue:"ACA · Preventive care mandate",                   petition:"Remanded from SCOTUS — Fifth Circuit en banc rehearing underway on severability",                      url:`${BASE_URL}/issues/preventive-services` },
+    { clusters:["provider"],          name:"TMA v. HHS (TMA III)",                issue:"No Surprises Act · Qualifying Payment Amount",    petition:"Oral argument May 5, 2026 — cert granted on NSA arbitration rules",                                   url:`${BASE_URL}/issues/qualifying-payment-amount` },
+    { clusters:["drugs"],             name:"Merck v. Becerra",                    issue:"Medicare Drug Price Negotiation (IRA)",            petition:"Potential cert vehicle — circuit split forming on IRA constitutionality",                               url:`${BASE_URL}/issues/medicare-drug-price-negotiation` },
+    { clusters:["drugs"],             name:"AbbVie v. HHS",                       issue:"Medicare Drug Price Negotiation · Biologics",     petition:"Oral argument Apr 20, 2026 — D.C. Circuit, likely cert vehicle",                                       url:`${BASE_URL}/litigation/abbvie-inc-v-department-of-health-and-human-services-et-al` },
+    { clusters:["repro"],             name:"Idaho v. United States (EMTALA)",     issue:"EMTALA · Emergency abortion obligations",          petition:"Remanded from SCOTUS — awaiting new briefing schedule",                                                  url:`${BASE_URL}/issues/emtala` },
+    { clusters:["equity"],            name:"Do No Harm v. Landry",                issue:"Health equity · Race-conscious workforce programs","petition":"Fifth Circuit — cert petition likely if ruling upholds program",                                      url:`${BASE_URL}/litigation/do-no-harm-v-landry` },
+    { clusters:["market"],            name:"FTC v. US Anesthesia Partners",       issue:"Health care antitrust · Market monopolization",   petition:"Fifth Circuit oral argument Jun 2026 — SCOTUS watch if affirmed",                                       url:`${BASE_URL}/issues/anticompetitive-practices` },
+    { clusters:["consumer","access"], name:"AHA v. PatientRightsAdvocate.org",    issue:"Hospital price transparency enforcement",          petition:"D.C. Circuit — cert petition likely if transparency rule struck",                                        url:`${BASE_URL}/litigation/american-hospital-association-et-al-v-patientrightsadvocate-org-inc` },
+    { clusters:["funding"],           name:"Harvard College v. HHS",              issue:"Federal research funding termination",             petition:"First Circuit — SCOTUS watch given national significance of NIH cuts",                                   url:`${BASE_URL}/litigation/president-and-fellows-of-harvard-college-v-department-of-health-and-human-services-et-al` },
   ];
   const cases = clusterId
     ? ALL_SCOTUS.filter(c => c.clusters.includes(clusterId)).slice(0, 4)
     : ALL_SCOTUS.slice(0, 4);
   if (!cases.length) return null;
-  const hdrColor = color || "#1e3a5f";
   return (
     <Card style={{ padding:0, overflow:"hidden" }}>
       <div style={{ background:"#1e3a5f", padding:"14px 18px" }}>
-        <SL color={C.gold} style={{ marginBottom:4 }}>Highest stakes</SL>
+        <SL color={C.gold} style={{ marginBottom:4 }}>Cert petitions we're watching</SL>
         <CT style={{ color:C.white, margin:0 }}>Supreme Court — Cases We're Following</CT>
+        <div style={{ fontFamily:FB, fontSize:12, color:"#94a3b8", marginTop:5, lineHeight:1.5 }}>Active cert petitions and cases approaching SCOTUS threshold</div>
       </div>
       <div style={{ padding:"4px 18px" }}>
         {cases.map((c, i) => (
@@ -1246,11 +1308,17 @@ function ScotusCard({ clusterId, color }) {
               </svg>
             </div>
             <div style={{ fontFamily:FB, fontSize:13, color:C.slateL, marginTop:2 }}>{c.issue}</div>
-            <div style={{ marginTop:5 }}>
-              <span style={{ fontFamily:FB, fontSize:13, fontWeight:600, color:"#1e3a5f", background:"#e8eef7", padding:"2px 8px", borderRadius:8 }}>{c.status}</span>
-            </div>
+            <div style={{ marginTop:6, fontFamily:FB, fontSize:12, color:"#374151", lineHeight:1.5 }}>{c.petition}</div>
           </a>
         ))}
+      </div>
+      <div style={{ padding:"8px 18px 12px", borderTop:`1px solid ${C.smoke}` }}>
+        <a href={`${BASE_URL}/litigation`} target="_blank" rel="noopener noreferrer"
+           style={{ fontFamily:FB, fontSize:12, color:C.slateL, textDecoration:"none" }}
+           onMouseEnter={e => e.currentTarget.style.color=C.navy}
+           onMouseLeave={e => e.currentTarget.style.color=C.slateL}>
+          Browse all tracked cases ↗
+        </a>
       </div>
     </Card>
   );
@@ -1828,7 +1896,8 @@ function IssueDashboard({ issue, clusterColor, clusterBg, clusterBd, openPanel }
   const total = appellate + district;
   // Active courts + plaintiff data — fall back to issue level when subtopic has none
   const activeCourts  = (activeSub !== "all" && sub && sub.courts  && sub.courts.length)  ? sub.courts  : issue.courts;
-  const activeWhoSues = (activeSub !== "all" && sub && sub.whoSues && sub.whoSues.length)  ? sub.whoSues : issue.whoSues;
+  const activeWhoSues  = (activeSub !== "all" && sub && sub.whoSues && sub.whoSues.length)  ? sub.whoSues : issue.whoSues;
+  const activeTheories = issue.legalTheories || [];
   const donutColors = [clusterColor, clusterColor + "aa", clusterColor + "66", clusterColor + "33"];
 
   return (
@@ -1866,8 +1935,8 @@ function IssueDashboard({ issue, clusterColor, clusterBg, clusterBd, openPanel }
       )}
 
 
-      {/* Row A: Filing Activity + Plaintiff by Type */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14, marginBottom:14 }}>
+      {/* Row A: Filing Activity + Plaintiff by Type + Legal Theories */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14, marginBottom:14 }}>
         <FilingActivityCard
           data={activeSub !== "all" && sub && issue.filedByMonth ? issue.filedByMonth.map(d=>({...d,n:Math.max(0,Math.round(d.n*(sub.n/Math.max(issue.total,1))))})) : issue.filedByMonth}
           yearData={issue.filedByYear}
@@ -1877,6 +1946,7 @@ function IssueDashboard({ issue, clusterColor, clusterBg, clusterBd, openPanel }
           openPanel={openPanel}
         />
         <PlaintiffTypeCard data={activeWhoSues} color={clusterColor} openPanel={openPanel} clusterId={ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id))?.id} />
+        <LegalTheoriesCard data={activeTheories} color={clusterColor} openPanel={openPanel} clusterId={ISSUE_CLUSTERS.find(c=>c.issues.some(i=>i.id===issue.id))?.id} />
       </div>
 
       {/* Row B: Appointing President + SCOTUS */}
@@ -2451,14 +2521,14 @@ function LandingOverview({ onSelect, openPanel }) {
         const [hovPlaintiff, setHovPlaintiff] = useState(null);
 
         const scotusCases = [
-          { name:"Neese v. Kennedy", issue:"Nondiscrimination (§1557)", status:"Cert petition active", url:`${BASE}/litigation` },
-          { name:"Braidwood v. Kennedy", issue:"Preventive Services (ACA)", status:"Decision issued — appeal ongoing", url:`${BASE}/issues/preventive-services` },
-          { name:"FDA v. Alliance for Hippocratic Medicine", issue:"Medication Abortion", status:"Decision issued", url:`${BASE}/litigation/food-and-drug-administration-et-al-vs-alliance-for-hippocratic-medicine-et-al` },
-          { name:"Idaho v. United States (EMTALA)", issue:"EMTALA / Emergency Care", status:"Decision issued — remanded", url:`${BASE}/issues/emtala` },
+          { name:"Neese v. Kennedy",               issue:"ACA § 1557 · Gender identity nondiscrimination", petition:"Cert petition pending — HHS nondiscrimination rulemaking authority",                        url:`${BASE}/litigation` },
+          { name:"Braidwood Management v. Kennedy", issue:"ACA · Preventive care mandate",                 petition:"Remanded from SCOTUS — Fifth Circuit en banc rehearing on severability",                  url:`${BASE}/issues/preventive-services` },
+          { name:"TMA v. HHS (TMA III)",            issue:"No Surprises Act · Qualifying Payment Amount",  petition:"Cert granted — oral argument May 5, 2026 on NSA arbitration rules",                       url:`${BASE}/issues/qualifying-payment-amount` },
+          { name:"Merck v. Becerra",                issue:"Medicare Drug Price Negotiation (IRA)",         petition:"Potential cert vehicle — circuit split forming on IRA constitutionality",                  url:`${BASE}/issues/medicare-drug-price-negotiation` },
         ];
 
         return (
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14, marginBottom:22 }}>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14, marginBottom:22 }}>
             {/* Plaintiff by Type */}
             <div style={{ background:C.white, border:`1px solid ${C.border}`, borderRadius:14, overflow:"hidden", boxShadow:"0 2px 8px rgba(0,0,0,0.05)" }}>
               <div style={{ padding:"16px 20px 12px", borderBottom:`1px solid ${C.smoke}` }}>
@@ -2495,9 +2565,9 @@ function LandingOverview({ onSelect, openPanel }) {
             {/* SCOTUS cert petitions */}
             <div style={{ background:C.white, border:`1px solid ${C.border}`, borderRadius:14, overflow:"hidden", boxShadow:"0 2px 8px rgba(0,0,0,0.05)" }}>
               <div style={{ background:"#1e3a5f", padding:"16px 20px 12px" }}>
-                <div style={{ fontFamily:FB, fontSize:14, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.gold, marginBottom:4 }}>Highest stakes</div>
+                <div style={{ fontFamily:FB, fontSize:14, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.gold, marginBottom:4 }}>Cert petitions we're watching</div>
                 <div style={{ fontFamily:FD, fontWeight:700, fontSize:18, color:C.white, lineHeight:1 }}>Supreme Court — Cases We're Following</div>
-                <div style={{ fontFamily:FB, fontSize:14, color:"#94a3b8", marginTop:4 }}>Cases at or approaching SCOTUS across tracked issue areas</div>
+                <div style={{ fontFamily:FB, fontSize:14, color:"#94a3b8", marginTop:4 }}>Active cert petitions and cases approaching the SCOTUS threshold</div>
               </div>
               <div style={{ padding:"12px 20px", display:"flex", flexDirection:"column", gap:0 }}>
                 {scotusCases.map((c, i) => (
@@ -2513,10 +2583,8 @@ function LandingOverview({ onSelect, openPanel }) {
                         <line x1="5.5" y1="6.5" x2="11" y2="1"/>
                       </svg>
                     </div>
-                    <div style={{ fontFamily:FB, fontSize:14, color:C.slateL, marginTop:3 }}>{c.issue}</div>
-                    <div style={{ marginTop:5 }}>
-                      <span style={{ fontFamily:FB, fontSize:14, fontWeight:600, color:"#1e3a5f", background:"#e8eef7", padding:"2px 8px", borderRadius:8 }}>{c.status}</span>
-                    </div>
+                    <div style={{ fontFamily:FB, fontSize:13, color:C.slateL, marginTop:3 }}>{c.issue}</div>
+                    <div style={{ fontFamily:FB, fontSize:12, color:"#374151", marginTop:5, lineHeight:1.5 }}>{c.petition}</div>
                   </a>
                 ))}
               </div>
@@ -2525,10 +2593,36 @@ function LandingOverview({ onSelect, openPanel }) {
                    style={{ fontFamily:FB, fontSize:14, color:C.slateL, textDecoration:"none" }}
                    onMouseEnter={e=>e.currentTarget.style.color=C.navy}
                    onMouseLeave={e=>e.currentTarget.style.color=C.slateL}>
-                  View all 8 SCOTUS-level cases ↗
+                  Browse all cert petitions we're tracking ↗
                 </a>
               </div>
             </div>
+            {/* Legal Theories — overview level */}
+            <Card style={{ padding:0, overflow:"hidden" }}>
+              <div style={{ background:"#1e3a5f", padding:"14px 18px" }}>
+                <SL color={C.gold} style={{ marginBottom:4 }}>Legal theories</SL>
+                <CT style={{ color:C.white, margin:0 }}>Statutes &amp; Doctrines Cited</CT>
+                <div style={{ fontFamily:FB, fontSize:12, color:"#94a3b8", marginTop:5 }}>Most-cited across all 399 tracked cases</div>
+              </div>
+              <div style={{ padding:"12px 18px" }}>
+                {(() => {
+                  const allTheories = ISSUE_CLUSTERS.flatMap(c=>c.issues.flatMap(i=>i.legalTheories||[])).reduce((acc,p)=>{ const e=acc.find(a=>a.name===p.name); e?e.n+=p.n:acc.push({...p}); return acc; },[]).sort((a,b)=>b.n-a.n).slice(0,7);
+                  const maxN = Math.max(...allTheories.map(d=>d.n),1);
+                  const COLORS = ["#1e3a5f","#2563eb","#7c3aed","#0d9488","#b45309","#dc2626","#6b7280"];
+                  return allTheories.map((d,i) => (
+                    <div key={i} style={{ marginBottom:8 }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
+                        <span style={{ fontFamily:FB, fontSize:13, color:C.navy, flex:1, paddingRight:8 }}>{d.name}</span>
+                        <span style={{ fontFamily:FD, fontWeight:700, fontSize:13, color:COLORS[i] }}>{d.n}</span>
+                      </div>
+                      <div style={{ height:5, background:C.smoke, borderRadius:3 }}>
+                        <div style={{ height:"100%", width:`${Math.round((d.n/maxN)*100)}%`, background:COLORS[i], borderRadius:3 }}/>
+                      </div>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </Card>
           </div>
         );
       })()}
@@ -2811,7 +2905,8 @@ function ClusterDashboard({ cluster, onSelectIssue, openPanel }) {
   })();
 
   const activeCourts  = (sub && sub.courts) ? sub.courts : (issue && issue.courts) ? issue.courts : Array.from(new Set(cluster.issues.flatMap(i=>i.courts||[]))).slice(0,6);
-  const activeWhoSues = (sub && sub.whoSues) ? sub.whoSues : (issue && issue.whoSues) ? issue.whoSues : cluster.issues.flatMap(i=>i.whoSues||[]).reduce((acc,p)=>{ const e=acc.find(a=>a.name===p.name); e?e.n+=p.n:acc.push({...p}); return acc; },[]).sort((a,b)=>b.n-a.n).slice(0,6);
+  const activeWhoSues    = (sub && sub.whoSues) ? sub.whoSues : (issue && issue.whoSues) ? issue.whoSues : cluster.issues.flatMap(i=>i.whoSues||[]).reduce((acc,p)=>{ const e=acc.find(a=>a.name===p.name); e?e.n+=p.n:acc.push({...p}); return acc; },[]).sort((a,b)=>b.n-a.n).slice(0,6);
+  const activeTheories   = issue ? (issue.legalTheories || []) : cluster.issues.flatMap(i=>i.legalTheories||[]).reduce((acc,p)=>{ const e=acc.find(a=>a.name===p.name); e?e.n+=p.n:acc.push({...p}); return acc; },[]).sort((a,b)=>b.n-a.n).slice(0,8);
   // filedByMonth must be declared before scaledFilingData
   const filedByMonth  = (issue && issue.filedByMonth) ? issue.filedByMonth : (cluster.issues.find(i=>i.filedByMonth) || {}).filedByMonth || [];
   const activeSubTotal = (activeSub !== "all" && sub) ? sub.n : null;
@@ -2875,10 +2970,11 @@ function ClusterDashboard({ cluster, onSelectIssue, openPanel }) {
       {/* Policy status when issue selected */}
       {issue && issue.policyStatus && STATUS_CONFIG[issue.policyStatus] && <div style={{ marginBottom:16 }}><PolicyStatus status={issue.policyStatus} note={issue.policyNote} /></div>}
 
-      {/* Row A: Filing Activity + Plaintiff by Type */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14, marginBottom:14 }}>
+      {/* Row A: Filing Activity + Plaintiff by Type + Legal Theories */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14, marginBottom:14 }}>
         <FilingActivityCard key={`fa-${cluster.id}-${activeIssue}-${activeSub}`} data={scaledFilingData} yearData={issue ? issue.filedByYear : (cluster.issues.find(i=>i.filedByYear)||{}).filedByYear} color={cluster.color} total={totalCases} label={activeSub !== "all" && sub ? `cases in ${sub.label}` : issue ? `cases in ${issue.label}` : `cases in ${cluster.label}`} openPanel={openPanel} />
         <PlaintiffTypeCard data={activeWhoSues} color={cluster.color} openPanel={openPanel} clusterId={cluster.id} />
+        <LegalTheoriesCard data={activeTheories} color={cluster.color} openPanel={openPanel} clusterId={cluster.id} />
       </div>
 
       {/* Row B: Appointing President + SCOTUS */}
